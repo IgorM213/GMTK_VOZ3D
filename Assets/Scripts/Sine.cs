@@ -83,4 +83,12 @@ public class Sine : MonoBehaviour
         Vector3 dir = power * transform.forward;
         rb.AddForce(dir);
     }
+    public float vratiVelocity()
+    {
+        return velocity;
+    }
+    public float vratiTrenutniT()
+    {
+        return currentSplinePosition;
+    }
 }
