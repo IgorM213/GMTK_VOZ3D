@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -17,8 +18,13 @@ public class Enemy : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    void LateUpdate()
+    {   
+        if(hp <= 0)
+        {
+            this.gameObject.SetActive(false);
+            Destroy(this.gameObject);
+        }
         if (targetPoint != null)
         {
             // Calculate the step size for this frame
@@ -40,7 +46,7 @@ public class Enemy : MonoBehaviour
             //Debug.Log("udario");
             grad.DealDmg(atk);
             this.gameObject.SetActive(false);
-            
+            Destroy(this.gameObject);
         }
     }
 
