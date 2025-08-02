@@ -7,8 +7,7 @@ public class Pixelate:MonoBehaviour{
 	public Shader shader;
 	int _pixelSizeX=1;
 	int _pixelSizeY=1;
-	[SerializeField] Material _material;
-
+	Material _material;
 	[Range(1,20)]
 	public int pixelSizeX=1;
 	[Range(1,20)]
