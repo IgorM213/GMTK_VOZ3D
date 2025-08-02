@@ -5,7 +5,7 @@ public class Turret :MonoBehaviour
 
     [SerializeField] float dmg;
     [SerializeField] float radius;
-
+    [SerializeField] 
 
     private void Start()
     {
@@ -15,10 +15,15 @@ public class Turret :MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(radius);
+        //Debug.Log(radius);
     }
 
     public void Fire()
+    {
+
+    }
+
+    public void Attack()
     {
 
     }
