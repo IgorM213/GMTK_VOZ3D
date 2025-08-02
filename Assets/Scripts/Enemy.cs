@@ -10,6 +10,8 @@ public class Enemy : MonoBehaviour
     [SerializeField] GameObject city;
     private Transform targetPoint;
     private Grad grad;
+    [SerializeField] private ParticleSystem blood;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -52,6 +54,8 @@ public class Enemy : MonoBehaviour
 
     public void TakeDmg(float dmg)
     {
+        if (blood != null)
+            blood.Play();
         hp -= dmg;
         Debug.Log(hp + "enemi health");
     }
