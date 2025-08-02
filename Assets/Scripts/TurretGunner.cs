@@ -1,10 +1,8 @@
-using System;
 using UnityEngine;
 
-public class Grad : MonoBehaviour
+public class TurretGunner : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    [SerializeField] private float hp;
     void Start()
     {
         
@@ -14,11 +12,5 @@ public class Grad : MonoBehaviour
     void Update()
     {
         
-    }
-
-    public void DealDmg(float enemyDmg)
-    {
-        hp -= enemyDmg;
-        Debug.Log(hp + "trenutni hp");
     }
 }
