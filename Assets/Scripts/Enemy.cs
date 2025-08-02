@@ -43,4 +43,10 @@ public class Enemy : MonoBehaviour
             
         }
     }
+
+    public void TakeDmg(float dmg)
+    {
+        hp -= dmg;
+        Debug.Log(hp + "enemi health");
+    }
 }
