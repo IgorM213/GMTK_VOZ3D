@@ -7,6 +7,7 @@ public class Turret : MonoBehaviour
     [SerializeField] float dmg;
     [SerializeField] float radius;
     [SerializeField] private float fireRate = 1f;
+    [SerializeField] private ParticleSystem muzzleFlash;
 
     private float fireCooldown = 0f;
     private List<Enemy> enemiesInRange = new List<Enemy>();
@@ -57,6 +58,8 @@ public class Turret : MonoBehaviour
         Enemy target = GetClosestEnemy();
         if (target != null)
         {
+            if (muzzleFlash != null)
+                muzzleFlash.Play();
             target.TakeDmg(dmg);
         }
     }
