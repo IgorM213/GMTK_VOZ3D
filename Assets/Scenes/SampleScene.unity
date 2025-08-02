@@ -846,18 +846,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
 
 --- !u!1001 &804412738
-=======
---- !u!1001 &632863070
->>>>>>> 2320ec4c4000ec1f0a0a77e4f741792dc7a681f8
->>>>>>> Stashed changes
+
+
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
+
+
     m_TransformParent: {fileID: 2020350190}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 9f992349c11b4934f85aa9269ddba4ad, type: 3}
@@ -903,8 +900,6 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 9f992349c11b4934f85aa9269ddba4ad, type: 3}
       propertyPath: m_Name
       value: Rails
-=======
->>>>>>> Stashed changes
     m_TransformParent: {fileID: 2088448554}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: b9cc68ccdf82144ed926fa44c3c3f405, type: 3}
@@ -950,30 +945,18 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: b9cc68ccdf82144ed926fa44c3c3f405, type: 3}
       propertyPath: m_Name
       value: chimney
-<<<<<<< Updated upstream
-=======
->>>>>>> 2320ec4c4000ec1f0a0a77e4f741792dc7a681f8
->>>>>>> Stashed changes
+
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
-  m_SourcePrefab: {fileID: 100100000, guid: 9f992349c11b4934f85aa9269ddba4ad, type: 3}
-=======
->>>>>>> Stashed changes
   m_SourcePrefab: {fileID: 100100000, guid: b9cc68ccdf82144ed926fa44c3c3f405, type: 3}
 --- !u!4 &632863071 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: b9cc68ccdf82144ed926fa44c3c3f405, type: 3}
   m_PrefabInstance: {fileID: 632863070}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< Updated upstream
-=======
->>>>>>> 2320ec4c4000ec1f0a0a77e4f741792dc7a681f8
 >>>>>>> Stashed changes
 --- !u!1 &832575517
 GameObject:
