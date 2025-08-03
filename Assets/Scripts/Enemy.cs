@@ -1,5 +1,7 @@
+using System;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Enemy : MonoBehaviour
 {
@@ -7,10 +9,17 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float hp;
     [SerializeField] private float atk;
     [SerializeField] private float mvSpeed;
+
+    [SerializeField] private int xpValue = 10;
     [SerializeField] GameObject city;
     private Transform targetPoint;
     private Grad grad;
     [SerializeField] private ParticleSystem blood;
+
+    [System.Serializable]
+    public class EnemyDiedEvent : UnityEvent<int> {}
+
+    public EnemyDiedEvent onEnemyDied;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -24,6 +33,8 @@ public class Enemy : MonoBehaviour
     {   
         if(hp <= 0)
         {
+            onEnemyDied.Invoke(xpValue);
+            // Debug.Log("DIED");
             this.gameObject.SetActive(false);
             Destroy(this.gameObject);
         }
@@ -57,6 +68,6 @@ public class Enemy : MonoBehaviour
         if (blood != null)
             blood.Play();
         hp -= dmg;
-        Debug.Log(hp + "enemi health");
+        // Debug.Log(hp + "enemi health");
     }
 }
