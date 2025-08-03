@@ -6,6 +6,10 @@ public class Sceanswitch : MonoBehaviour
     {
         SceneManager.LoadScene("NewScene"); // zameni sa stvarnim imenom scene
     }
+    public void Restart()
+    {
+        SceneManager.LoadScene("Start screen"); // zameni sa stvarnim imenom scene
+    }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
