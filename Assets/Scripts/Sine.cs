@@ -1,4 +1,5 @@
 using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Splines;
 
@@ -21,6 +22,18 @@ public class Sine : MonoBehaviour
     private float currentSplinePosition = 0f;
 
 
+    public static Sine Instance { get; private set; }
+
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this);
+            return;
+        }
+        Instance = this;
+    }
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -35,13 +48,13 @@ public class Sine : MonoBehaviour
             return;
         }
 
-        // Ako držiš W ? ubrzaj
+        // Ako drï¿½iï¿½ W ? ubrzaj
         if (Input.GetKey(KeyCode.W))
         {
             velocity += acceleration/2 * Time.deltaTime;
         }
 
-        // Ako držiš S ? ko?i
+        // Ako drï¿½iï¿½ S ? ko?i
         else if (Input.GetKey(KeyCode.S))
         {
             if (velocity > 0f)
@@ -49,7 +62,7 @@ public class Sine : MonoBehaviour
                 velocity -= brakingForce/2 * Time.deltaTime;
             }
         }
-        // Ako ništa ne držiš ? prirodno usporavaj (trenje)
+        // Ako niï¿½ta ne drï¿½iï¿½ ? prirodno usporavaj (trenje)
         else
         {
             if (velocity > 0)

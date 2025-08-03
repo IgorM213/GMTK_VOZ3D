@@ -1,54 +1,39 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-
+    [SerializeField] private float maxHP;
     [SerializeField] private float hp;
     [SerializeField] private float atk;
     [SerializeField] private float mvSpeed;
-    [SerializeField] GameObject city;
-    private Transform targetPoint;
-    private Grad grad;
     [SerializeField] private ParticleSystem blood;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private Transform targetPoint;
+    private Grad grad;
+
+    // Called by EnemyManager after activation
+    public void Initialize(Transform cityTransform)
     {
-        targetPoint = city.GetComponent<Transform>();
-        grad = city.GetComponent<Grad>();
+        hp = maxHP; // Reset health to max
+        targetPoint = cityTransform;
+        grad = cityTransform.GetComponent<Grad>();
     }
 
-    // Update is called once per frame
     void LateUpdate()
     {   
-        if(hp <= 0)
-        {
-            this.gameObject.SetActive(false);
-            Destroy(this.gameObject);
-        }
         if (targetPoint != null)
         {
-            // Calculate the step size for this frame
             float step = mvSpeed * Time.deltaTime;
-
-            // Move the enemy towards the target point
             transform.position = Vector3.MoveTowards(transform.position, targetPoint.position, step);
         }
-        //DealDmg(city);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        //Debug.Log("udario1");
-        if (other.gameObject.CompareTag("City"))
+        if (other.CompareTag("City") && grad != null)
         {
-
-            //other.gameObject.SetActive(false);
-            //Debug.Log("udario");
             grad.DealDmg(atk);
-            this.gameObject.SetActive(false);
-            Destroy(this.gameObject);
+            gameObject.SetActive(false); // Pooling: just deactivate
         }
     }
 
@@ -57,6 +42,14 @@ public class Enemy : MonoBehaviour
         if (blood != null)
             blood.Play();
         hp -= dmg;
-        Debug.Log(hp + "enemi health");
+        if (hp <= 0)
+        {
+            // Drop experience with chance
+            if (ExperienceManager.Instance != null)
+                ExperienceManager.Instance.TrySpawnExperience(transform.position);
+
+            gameObject.SetActive(false);
+        }
+        Debug.Log(hp + " enemy health");
     }
 }
