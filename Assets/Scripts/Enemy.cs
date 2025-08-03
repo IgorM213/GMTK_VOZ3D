@@ -44,7 +44,7 @@ public class Enemy : MonoBehaviour
     private IEnumerator DieByTrain()
     {
         yield return new WaitForSeconds(1f); // delay od 1 sekunde
-
+        blood.Play();
         TakeDmg(maxHP);
     }
     public void TakeDmg(float dmg)
@@ -54,6 +54,7 @@ public class Enemy : MonoBehaviour
         hp -= dmg;
         if (hp <= 0)
         {
+            
             // Drop experience with chance
             if (ExperienceManager.Instance != null)
                 ExperienceManager.Instance.TrySpawnExperience(transform.position);
