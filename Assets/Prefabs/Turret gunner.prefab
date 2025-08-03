@@ -439,7 +439,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dmg: 5
-  radius: 8
+  radius: 15
   fireRate: 2.25
   muzzleFlash: {fileID: 683785461851949451}
   bulletPrefab: {fileID: 477666544301027915, guid: f9b43d26b45ba804daa56b51ed36cf02, type: 3}
