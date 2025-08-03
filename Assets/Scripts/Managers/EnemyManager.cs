@@ -71,7 +71,7 @@ public class EnemyManager : MonoBehaviour
     {
         currentWave++;
         int enemiesThisWave = startEnemiesPerWave + currentWave;
-        Debug.Log($"Spawning wave {currentWave} with {enemiesThisWave} enemies.");
+        // Debug.Log($"Spawning wave {currentWave} with {enemiesThisWave} enemies.");
         StartCoroutine(SpawnWave(enemiesThisWave));
     }
 
@@ -104,7 +104,7 @@ public class EnemyManager : MonoBehaviour
                 }
 
                 enemyObj.SetActive(true);
-                Debug.Log($"Spawned enemy {enemyObj.name} at {spawnPos}");
+                // Debug.Log($"Spawned enemy {enemyObj.name} at {spawnPos}");
             }
             else
             {

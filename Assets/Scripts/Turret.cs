@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Turret : MonoBehaviour
 {
+    [SerializeField] AudioSource audioSource;
+
+    [SerializeField] AudioClip audioclip;
+
     [SerializeField] float dmg;
     [SerializeField] float radius;
     [SerializeField] private float fireRate = 1f;
@@ -155,6 +159,7 @@ public class Turret : MonoBehaviour
 
     private IEnumerator FireRoutine()
     {
+        // Debug.Log("TEEEEEEEEEST");
         while (enemiesInRange.Count > 0)
         {
             enemiesInRange.RemoveAll(e => e == null || !e.gameObject.activeInHierarchy);
@@ -193,6 +198,8 @@ public class Turret : MonoBehaviour
                 {
                     turretBullet.Initialize(target, dmg);
                     if (muzzleFlash != null) muzzleFlash.Play();
+                    audioSource.PlayOneShot(audioclip);
+
                 }
             }
 
