@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Mono.Cecil.Cil;
 using UnityEngine;
 
 public class ExperienceManager : MonoBehaviour
@@ -31,6 +32,8 @@ public class ExperienceManager : MonoBehaviour
     [SerializeField] private float defaultIntensity = 0f;
     [SerializeField] private float calledIntensity = 5f;
 
+    public XPBar xpBar;
+
     private Coroutine emissionCoroutine;
 
     private void Awake()
@@ -44,6 +47,7 @@ public class ExperienceManager : MonoBehaviour
         }
         SetLight(defaultColor, defaultIntensity);
         expToNextLevel = Mathf.RoundToInt(expBase); // Start with base value
+        xpBar.SetXP(0);
     }
 
     public void TrySpawnExperience(Vector3 position)
@@ -92,6 +96,12 @@ public class ExperienceManager : MonoBehaviour
     {
         collectedExperience += amount;
         currentLevelExp += amount;
+        float x = currentLevelExp;
+        float y = expToNextLevel;
+        xpBar.SetXP(x/y);
+        // Debug.Log("XP: " + CurrentLevelExp + " _ " + expToNextLevel);
+        // Debug.Log("DIV " + x / y);
+        
         if (currentLevelExp >= expToNextLevel)
         {
             LevelUp();
@@ -102,6 +112,7 @@ public class ExperienceManager : MonoBehaviour
     {
         currentLevel++;
         currentLevelExp = 0;
+        xpBar.SetXP(0);
         expToNextLevel = Mathf.RoundToInt(expToNextLevel * expGrowth); // Multiply by 1.2 each level
         if (GameManager.Instance != null)
             GameManager.Instance.StopGame();
