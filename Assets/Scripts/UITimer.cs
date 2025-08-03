@@ -6,6 +6,7 @@ public class UITimer : MonoBehaviour
     public TMPro.TextMeshProUGUI timerText; // Use TMPro.TextMeshProUGUI if using TextMeshPro
 
     public static float timer = 0f;
+    public static float finalTime = 0f;
     private bool isRunning = true;
 
     void Start()
@@ -28,6 +29,7 @@ public class UITimer : MonoBehaviour
     public void StopTimer()
     {
         isRunning = false;
+        finalTime = timer;
     }
 
     // Call this to start/reset the timer

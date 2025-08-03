@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Grad : MonoBehaviour
 {
@@ -10,7 +11,8 @@ public class Grad : MonoBehaviour
     void Start()
     {
         hp = MaxHp;
-        healthBar.SetHealth(hp / MaxHp);
+        if(healthBar != null)
+            healthBar.SetHealth(hp / MaxHp);
     }
 
     // Update is called once per frame
@@ -20,9 +22,14 @@ public class Grad : MonoBehaviour
     }
 
     public void DealDmg(float enemyDmg)
+{
+    hp -= enemyDmg;
+    Debug.Log(hp + " trenutni hp");
+
+    if (hp <= 0)
     {
-        hp -= enemyDmg;
-        healthBar.SetHealth(hp / MaxHp);
-        Debug.Log(hp + "trenutni hp");
+        UITimer.finalTime = UITimer.timer;
+        SceneManager.LoadScene("End screen"); 
     }
+}
 }
