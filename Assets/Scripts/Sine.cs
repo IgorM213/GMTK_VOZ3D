@@ -13,14 +13,16 @@ public class Sine : MonoBehaviour
 
     private float velocity = 0f;
 
-    [SerializeField] private float acceleration = 0.05f;
+    [SerializeField] private float acceleration = 0.1f;
     [SerializeField] private float deceleration = 0.001f;
     [SerializeField] private float brakingForce = 0.01f;
-    [SerializeField] private float maxSpeed = 2f;
+    [SerializeField] private float maxSpeed = 0.003f;
     [SerializeField] SphereCollider SphereCollider;
 
     private float currentSplinePosition = 0f;
-
+    private float wKeyHoldTime = 0f;
+    [SerializeField]private const float maxWKeyHoldDuration = 5f;
+    private bool wKeyLocked = false;
 
     public static Sine Instance { get; private set; }
 
@@ -41,6 +43,8 @@ public class Sine : MonoBehaviour
 
     void Update()
     {
+
+      
         if (splineContainer == null)
         {
             Debug.Log("zavsrio se");
@@ -48,30 +52,44 @@ public class Sine : MonoBehaviour
             return;
         }
 
-        
-        if (Input.GetKey(KeyCode.W))
+
+        if (Input.GetKey(KeyCode.W) && !wKeyLocked)
         {
-            velocity += acceleration/4 * Time.deltaTime;
+            wKeyHoldTime += Time.deltaTime;
+
+            if (wKeyHoldTime >= maxWKeyHoldDuration)
+            {
+                wKeyLocked = true;
+            }
+            else
+            {
+                velocity += acceleration / 5 * Time.deltaTime;
+            }
+        }
+        else if (Input.GetKeyUp(KeyCode.W))
+        {
+            // Reset timer kad igra? pusti W
+            wKeyHoldTime = 0f;
+            wKeyLocked = false;
         }
 
-       
         else if (Input.GetKey(KeyCode.S))
         {
             if (velocity > 0f)
             {
-                velocity -= brakingForce/2 * Time.deltaTime;
+                velocity -= brakingForce / 6 * Time.deltaTime;
             }
         }
-      
+
         else
         {
             if (velocity > 0)
-                velocity -= deceleration/3 * Time.deltaTime;
+                velocity -= deceleration / 3 * Time.deltaTime;
             else if (velocity < 0)
-                velocity += deceleration/3 * Time.deltaTime;
+                velocity += deceleration / 3 * Time.deltaTime;
         }
 
-       
+
         velocity = Mathf.Clamp(velocity, -maxSpeed, maxSpeed);
 
       
