@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -35,8 +36,17 @@ public class Enemy : MonoBehaviour
             grad.DealDmg(atk);
             gameObject.SetActive(false); // Pooling: just deactivate
         }
+        if (other.CompareTag("Train"))
+        {
+            StartCoroutine(DieByTrain()); // instant kill
+        }
     }
-
+    private IEnumerator DieByTrain()
+    {
+        yield return new WaitForSeconds(1f); // delay od 1 sekunde
+        blood.Play();
+        TakeDmg(maxHP);
+    }
     public void TakeDmg(float dmg)
     {
         if (blood != null)
@@ -44,6 +54,7 @@ public class Enemy : MonoBehaviour
         hp -= dmg;
         if (hp <= 0)
         {
+            
             // Drop experience with chance
             if (ExperienceManager.Instance != null)
                 ExperienceManager.Instance.TrySpawnExperience(transform.position);
