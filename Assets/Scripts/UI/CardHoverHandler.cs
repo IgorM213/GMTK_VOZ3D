@@ -25,13 +25,13 @@ public class CardHoverHandler : MonoBehaviour, IPointerEnterHandler, IPointerExi
     public void OnPointerEnter(PointerEventData eventData)
     {
         if (scaleRoutine != null) StopCoroutine(scaleRoutine);
-        scaleRoutine = StartCoroutine(LerpScaleAndTint(targetScale, targetTint));
+        // scaleRoutine = StartCoroutine(LerpScaleAndTint(targetScale, targetTint));
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         if (scaleRoutine != null) StopCoroutine(scaleRoutine);
-        scaleRoutine = StartCoroutine(LerpScaleAndTint(defaultScale, defaultTint));
+        // scaleRoutine = StartCoroutine(LerpScaleAndTint(defaultScale, defaultTint));
     }
 
     private IEnumerator LerpScaleAndTint(float toScale, Color toTint)
