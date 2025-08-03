@@ -5203,10 +5203,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ae6c5d2e4fda9a41a35cf21350d625e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 1000
-  atk: 0
-  mvSpeed: 0
-  city: {fileID: 0}
+  maxHP: 5
+  hp: 5
+  atk: 2
+  mvSpeed: 3
   blood: {fileID: 1156094222622231174}
 --- !u!54 &2966955200181868365
 Rigidbody:

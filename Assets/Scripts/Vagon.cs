@@ -6,14 +6,17 @@ using UnityEngine.Splines;
 public class Vagon : MonoBehaviour
 {
 
-    [SerializeField] private SplineContainer splineContainer;
-    [SerializeField] private float offsetDistance = 2f;
+    [SerializeField] public SplineContainer splineContainer;
+    [SerializeField] public float OffsetDistance = 2f;
+    [SerializeField] public Transform pos1;
+    [SerializeField] public Transform pos2;
+
 
     private float currentSplinePosition = 0f;
     private float velocity = 0f;
     private Rigidbody rb;
 
-    [SerializeField] GameObject glavaVozaObj;
+    [SerializeField] public GameObject glavaVozaObj;
 
 
 
@@ -29,9 +32,9 @@ public class Vagon : MonoBehaviour
     {
         Sine glavaVoza = glavaVozaObj.GetComponent<Sine>();
 
-        float baseT = glavaVoza.vratiTrenutniT(); // moraš dodati ovu metodu u Sine.cs
+        float baseT = glavaVoza.vratiTrenutniT(); // moraï¿½ dodati ovu metodu u Sine.cs
 
-        float offsetT = GetOffsetSplinePosition(baseT, offsetDistance);
+        float offsetT = GetOffsetSplinePosition(baseT, OffsetDistance);
         velocity = glavaVoza.vratiVelocity();
         
         // Pomeri voz po spline-u
@@ -59,11 +62,11 @@ public class Vagon : MonoBehaviour
     {
         var native = new NativeSpline(splineContainer.Splines[0]);
 
-        // Izra?unaj ukupnu dužinu spline-a
+        // Izra?unaj ukupnu duï¿½inu spline-a
         float totalLength = SplineUtility.CalculateLength(native, float4x4.identity);
 
 
-        // Izra?unaj trenutnu udaljenost duž spline-a
+        // Izra?unaj trenutnu udaljenost duï¿½ spline-a
         float baseDistance = baseT * totalLength;
 
         // Nova meta udaljenost (unazad)
@@ -73,7 +76,7 @@ public class Vagon : MonoBehaviour
         if (offsetTarget < 0f)
             offsetTarget += totalLength;
 
-        // Pretvori nazad u T vrednost (0–1)
+        // Pretvori nazad u T vrednost (0ï¿½1)
         float offsetT = offsetTarget / totalLength;
 
         return offsetT;
