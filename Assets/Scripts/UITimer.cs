@@ -5,7 +5,7 @@ public class UITimer : MonoBehaviour
 {
     public TMPro.TextMeshProUGUI timerText; // Use TMPro.TextMeshProUGUI if using TextMeshPro
 
-    private float timer = 0f;
+    public static float timer = 0f;
     private bool isRunning = true;
 
     void Start()
